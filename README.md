@@ -17,9 +17,26 @@ nextflow run iarcbioinfo/abra-nf --bed myBedFile.bed --ref genome.fasta --abra_p
 ```
 
 It takes around 30min on one BAM from ~1500 positions in 10,000X.  
-The process can be parallelized with the option __--threads__.
+The process can be parallelized with the option __--threads__ (_e.g. --threads 6_).
 
 ## STEP 2: coverage quality control with QC3
+
+[QC3](https://github.com/slzhao/QC3) is a quality control tools for 3 type of data, sequencing, alignment and variant calling.  
+The tool has been optimized by the IARC bioinformatic platform to decrease computation time when used on target-sequencing data which generates highly covered positions.  
+
+Command line example:
+
+```
+qc3.pl -m b -i list_bam.txt -o output_folder -r myBedFile.bed -nod -cm 2 -no_batch -d -d_cumul 1000,5000,10000
+```
+
+This example computes (amongst other things) the median depth, for each postion in the target bed file for each sample in the _list_bam.txt_ file. Thanks to option __-nod__, untarget depth is not computed at all.  
+We recommand to reserve a lot of memory and to use option `-t` to run the tool on multiple threads (_e.g. -t 24_).  
+To contruct the _list_bam.txt_ file, a possibility is to run:
+
+```
+find /whole_path_to_bam_files/*bam > list_bam.txt
+```
 
 ## STEP 3: variant calling with needlestack
 
