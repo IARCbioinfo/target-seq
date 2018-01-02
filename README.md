@@ -1,8 +1,9 @@
 # Calling mutations with needlestack on targeted sequencing data
 
 This is the description of the IARC workflow to call somatic mutations with needlestack on targeted sequencing data.  
-Usually, IARC data are generating with an IonTorrent Proton sequencer.
-This workflow contains 5 disctinct steps.
+Usually, IARC data are generating with an IonTorrent Proton sequencer.  
+Here samples are sequenced twice to remove library-preparation errors.  
+This workflow contains 5 disctinct steps:
 
 ## STEP 1: local re-alignment with ABRA2
 
