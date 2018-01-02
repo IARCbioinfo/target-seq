@@ -45,6 +45,14 @@ Once the bad samples are identified, the next step is to remove them in the fold
 
 ## STEP 3: variant calling with needlestack
 
+[needlestack](https://github.com/IARCbioinfo/needlestack) is a variant caller developed at IARC. It shows promising results on ctDNA data due to its ability to detect low allelic fraction mutations, until 10-4 if sequencing error rate sufficiently low.  
+
+Command line example:
+
+```
+nextflow run iarcbioinfo/needlestack -r v1.0 --bed /data/delhommet/needlestack_callings/ctDNA-TP53-RB1/Bedfile_TP53_Exon2_11_RB1_Exon2_27_04-04-2016.bed --bam_folder abra_output_folder --fasta_ref genome.fasta --nsplit 100 --map_qual 0 --base_qual 13 --max_DP 80000 --out_folder needlestack_output --min_qval 30
+```
+
 ## STEP 4: variant annotation with annovar
 
 ## STEP 5: post-filtering on bad samples/positions
