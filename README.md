@@ -50,9 +50,22 @@ Once the bad samples are identified, the next step is to remove them in the fold
 Command line example:
 
 ```
-nextflow run iarcbioinfo/needlestack -r v1.0 --bed /data/delhommet/needlestack_callings/ctDNA-TP53-RB1/Bedfile_TP53_Exon2_11_RB1_Exon2_27_04-04-2016.bed --bam_folder abra_output_folder --fasta_ref genome.fasta --nsplit 100 --map_qual 0 --base_qual 13 --max_DP 80000 --out_folder needlestack_output --min_qval 30
+nextflow run iarcbioinfo/needlestack -r v1.0 --bed /data/delhommet/needlestack_callings/ctDNA-TP53-RB1/Bedfile_TP53_Exon2_11_RB1_Exon2_27_04-04-2016.bed --bam_folder abra_output_folder --fasta_ref genome.fasta --nsplit 100 --map_qual 0 --base_qual 13 --max_DP 80000 --out_folder needlestack_output --min_qval 30 --out_vcf variants.vcf
 ```
 
 ## STEP 4: variant annotation with annovar
+
+[annovar](http://annovar.openbioinformatics.org/en/latest/) is an efficient tool which performs 3-levels genetic variant annotation (position, gene, region).  
+
+Command line example :
+
+```
+nextflow run vcf_annovar.nf --vcf variants.vcf
+```
+
+The script [vcf_annovar.nf](https://github.com/tdelhomme/target-seq/blob/master/bin/vcf_annovar.nf) is a nextflow script to run annovar in parallel, by sample.  
+The annovar executable __table_annovar.pl__ needs to be present in the $PATH.  
+If not defined in the [nextflow configuration file](https://www.nextflow.io/docs/latest/config.html), the parameter __--avdb__ needs to be defined in input, to precise the location of the annovar database used.  
+
 
 ## STEP 5: post-filtering on bad samples/positions
