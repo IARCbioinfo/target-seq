@@ -69,3 +69,9 @@ If not defined in the [nextflow configuration file](https://www.nextflow.io/docs
 
 
 ## STEP 5: post-filtering on bad samples/positions
+
+[target-seq_analysis.r](https://github.com/tdelhomme/target-seq/blob/master/bin/target-seq_analysis.r) filters the output of annovar on bad samples and positions, as well as on mutation not present in the two technical duplicates:
+
+ * filtering on samples with at least one of the two libraries harboring an unexpected high number of mutations. This increases the probability to having an error present in the two libraries.
+  
+ * filtering on positions with a high number of positive libraries that do not cluster in pairs. To extract these positions, we compute the probability of observing the particular number of paired positive libraries given the total number of positive libraries, just by chance.
