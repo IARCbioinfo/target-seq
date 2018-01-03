@@ -69,4 +69,4 @@ data_annotated$MIN_DIST = unlist(lapply(1:nrow(data_annotated), function(i) min_
 #filter
 data_annotated = data_annotated[which(data_annotated$MIN_DIST>5 | is.na(data_annotated$MIN_DIST)),]
 
-write.xlsx(all_data_annotated,file="all_CIR_annotated_variants_both_lib.xlsx",col.names=T,row.names=F)
+write.xlsx(all_data_annotated,file="all_data_annotated_filtered.xlsx",col.names=T,row.names=F)
