@@ -40,7 +40,7 @@ find /whole_path_to_bam_files/*bam > list_bam.txt
 
 Samples are sequenced in technical duplicates, and those with a median coverage less than a particular threshold in at least one of the two libraries need to be remove to avoid technical artifacts.  
 [This R script](https://github.com/tdelhomme/target-seq/blob/master/bin/QC3_analysis.r) extracts those samples.
-Once the bad samples are identified, the next step is to remove them in the folder used for the variant calling with needlestack (a good practice would be to create a new bad folder and then make symlinks before removing bad samples).  
+Once the bad samples are identified, the next step is to remove them in the folder used for the variant calling with needlestack (a good practice would be to create a new BAM folder and then make symlinks before removing bad samples).  
 
 
 ## STEP 3: variant calling with needlestack

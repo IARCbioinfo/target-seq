@@ -54,7 +54,7 @@ rownames(dat) = dat$SM
 dat[names(table(data_annotated$SM)),"mutations"] = as.numeric(table(data_annotated$SM))
 #compute the threshold of number of mutations per library, and the corresponding samples to exclude
 thr = nb_mut_thr(dat$mutations)
-excluded_libraries = as.character(dat[which(dat$mutations>=152),"SM"])
+excluded_libraries = as.character(dat[which(dat$mutations>=thr),"SM"])
 excluded_samples = unlist(lapply(excluded_libraries, function(x) unlist(strsplit(x,"-"))[2]))
 data_annotated = data_annotated[which(!data_annotated$SM %in% excluded_samples),]
 
@@ -69,4 +69,4 @@ data_annotated$MIN_DIST = unlist(lapply(1:nrow(data_annotated), function(i) min_
 #filter
 data_annotated = data_annotated[which(data_annotated$MIN_DIST>5 | is.na(data_annotated$MIN_DIST)),]
 
-write.xlsx(all_data_annotated,file="all_data_annotated_filtered.xlsx",col.names=T,row.names=F)
+write.xlsx(data_annotated,file="all_data_annotated_filtered.xlsx",col.names=T,row.names=F)
