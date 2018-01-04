@@ -47,7 +47,7 @@ data_annotated$pvalue_pairs50[which(data_annotated$QVAL>=50)] = get_pvalue_pairs
 # filtering on columns
 data_annotated=data_annotated[,interesting_cols]
 
-#number of mutations without any filters, before and after library dup check
+#number of mutations without any filters
 dat = data.frame("SM"=names(table(data_annotated$old_SM)),
                    "mutations"=as.numeric(table(data_annotated$old_SM)))
 #compute the threshold of number of mutations per library, and the corresponding samples to exclude
