@@ -30,7 +30,7 @@ data_annotated$AF=get_genotype(data_annotated$GENOTYPE,data_annotated$FORMAT[1],
 data_annotated$AO=get_genotype(data_annotated$GENOTYPE,data_annotated$FORMAT[1],"AO")
 data_annotated$DP=get_genotype(data_annotated$GENOTYPE,data_annotated$FORMAT[1],"DP")
 data_annotated$RVSB=get_genotype(data_annotated$GENOTYPE,data_annotated$FORMAT[1],"RVSB")
-data_annotated$QVAL=get_genotype(data_annotated$GENOTYPE,data_annotated$FORMAT[1],"QVAL")
+data_annotated$QVAL=get_genotype(data_annotated$GENOTYPE,data_annotated$FORMAT[which(grepl("QVAL:",data_annotated$FORMAT))[1]],"QVAL")
 data_annotated$TYPE=get_info(data_annotated$INFO,"TYPE",num=F)
 data_annotated$ERR=get_info(data_annotated$INFO,"ERR")
 data_annotated$CONT=get_info(data_annotated$INFO,"CONT",num=F)
