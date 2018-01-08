@@ -33,3 +33,16 @@ get_pvalue_pairs <- function(data, CIR){
     pvals[paste(data[i,"Chr"],data[i,"Start"],data[i,"End"],data[i,"Ref"],data[i,"Alt"],sep="_")]
   }, data))
 }
+
+# function to get minimum RVSB from paired mutations (in two libraries sharing a same SM)
+
+get_minRVSB <- function(data){
+  bc_data = paste(data$SM, data$Chr ,data$Start, data$Ref, data$Alt)
+  lib1 = which(duplicated(bc_data))
+  lib2 = unlist(lapply(lib1, function(i){
+    ids = which(bc_data[i] == bc_data)
+    ids[which(ids!=i)]
+  }))
+  data[lib1,"minRVSB"] = data[lib2,"minRVSB"] = pmin(data[lib1,"RVSB"], data[lib1,"RVSB"])
+  data$minRVSB
+}
