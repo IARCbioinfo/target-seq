@@ -47,6 +47,10 @@ data_annotated$pvalue_pairs50[which(data_annotated$QVAL>=50)] = get_pvalue_pairs
 # filtering on columns
 data_annotated=data_annotated[,interesting_cols]
 
+# filtering on RVSB, keeping only if one of the two libraries has RVSB<0.85
+data_annotated$minRVSB = get_minRVSB(data_annotated)
+data_annotated = data_annotated[which(data_annotated$minRVSB<0.85),]
+
 #number of mutations without any filters
 dat = data.frame("SM"=names(table(data_annotated$old_SM)),
                    "mutations"=as.numeric(table(data_annotated$old_SM)))
