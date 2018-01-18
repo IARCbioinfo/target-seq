@@ -57,7 +57,9 @@ dat = data.frame("SM"=names(table(data_annotated$old_SM)),
 #compute the threshold of number of mutations per library, and the corresponding samples to exclude
 thr = nb_mut_thr(dat$mutations)
 excluded_libraries = as.character(dat[which(dat$mutations>=thr),"SM"])
-excluded_samples = unlist(lapply(excluded_libraries, function(x) unlist(strsplit(x,"-"))[2]))
+#C. Voegele - modification to be independant from sample nomenclature
+#excluded_samples = unlist(lapply(excluded_libraries, function(x) unlist(strsplit(x,"-"))[2]))
+excluded_samples = unlist(lapply(excluded_libraries, function(x) data_annotated[which(data_annotated$old_SM),"SM"][1]))
 data_annotated = data_annotated[which(!data_annotated$SM %in% excluded_samples),]
 
 # compute mutations barcodes, that will be used to control for presence in the two libraries
