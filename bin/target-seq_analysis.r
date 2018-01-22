@@ -47,10 +47,6 @@ data_annotated$pvalue_pairs50[which(data_annotated$QVAL>=50)] = get_pvalue_pairs
 # filtering on columns
 data_annotated=data_annotated[,interesting_cols]
 
-# filtering on RVSB, keeping only if one of the two libraries has RVSB<0.85
-data_annotated$minRVSB = get_minRVSB(data_annotated)
-data_annotated = data_annotated[which(data_annotated$minRVSB<0.85),]
-
 #number of mutations without any filters
 dat = data.frame("SM"=names(table(data_annotated$old_SM)),
                    "mutations"=as.numeric(table(data_annotated$old_SM)))
@@ -62,6 +58,10 @@ excluded_libraries = as.character(dat[which(dat$mutations>=thr),"SM"])
 excluded_samples = unlist(lapply(excluded_libraries, function(x) data_annotated[which(data_annotated$old_SM == x),"SM"][1]))
 data_annotated = data_annotated[which(!data_annotated$SM %in% excluded_samples),]
 
+# filtering on RVSB, keeping only if one of the two libraries has RVSB<0.85
+data_annotated$minRVSB = get_minRVSB(data_annotated)
+data_annotated = data_annotated[which(data_annotated$minRVSB<0.85),]                                
+                                 
 # compute mutations barcodes, that will be used to control for presence in the two libraries
 # mutations barcodes are in format: SM_CHR_START_END_REF_ALT
 mutation_sample_bc=paste(data_annotated$SM,data_annotated$Chr,data_annotated$Start,data_annotated$End,data_annotated$Ref,data_annotated$Alt,sep="_")
