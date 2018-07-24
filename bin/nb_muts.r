@@ -1,5 +1,3 @@
-source("glm_rob_nb.r")
-
 nb_mut_thr <- function(nbmut){
   fit_NB_rob=glmrob.nb(nbmut,rep(100,length(nbmut)))$coef
   x2=0:max(nbmut)
