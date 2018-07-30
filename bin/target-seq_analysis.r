@@ -15,6 +15,8 @@ cat("MyAnalysis.txt",file="target-seq_analysis.log",fill=T)
 
 #number of total libraries (ls *.bam | wc -l) => storage in log file
 nb_indivs = 30 
+names(nb_indivs) = "85"
+run = "85"
 cat(paste("Number of libraries:",nb_indivs,"\n",sep=""),file="target-seq_analysis.log",append = T)
 
 #selection of annotations to keep in final file
