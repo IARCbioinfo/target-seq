@@ -21,7 +21,7 @@ The process can be parallelized with the option __--threads__ (_e.g. --threads 6
 
 ## STEP 2: coverage quality control with QC3
 
-[QC3](https://github.com/slzhao/QC3) is a quality control tools for 3 type of data, sequencing, alignment and variant calling.  
+[QC3](https://github.com/slzhao/QC3) is a quality control tools for 3 types of data: sequencing, alignment and variant calling.  
 The tool has been optimized by the IARC bioinformatic platform to decrease computation time when used on target-sequencing data which generates highly covered positions.  
 
 Command line example:
