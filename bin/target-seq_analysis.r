@@ -13,7 +13,7 @@ data_annotated$SM=gsub(".*-(.*)$","\\1",data_annotated$SM)
 #creation of log file
 cat("MyAnalysis.txt",file="target-seq_analysis.log",fill=T)
 
-#number of total libraries (wc -l *.bam) => storage in log file
+#number of total libraries (ls *.bam | wc -l) => storage in log file
 nb_indivs = 30 
 cat(paste("Number of libraries:",nb_indivs,"\n",sep=""),file="target-seq_analysis.log",append = T)
 
