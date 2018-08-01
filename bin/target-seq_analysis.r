@@ -3,6 +3,9 @@ source("filtering_functions.r")
 source("prob_pairs.r")
 source("nb_muts.r")
 
+# remove log file if already exists, to start an empty report
+invisible(if(file.exists("target-seq_analysis.log")) file.remove("target-seq_analysis.log"))
+
 # reading of the output table from annovar
 data_annotated=read.table("variants_annotated.txt",quote="\"",stringsAsFactors=F,sep="\t",header=T)
 # modifying sample name (SM), to have same SM for both libraries
