@@ -71,7 +71,7 @@ cat(paste("Excluded libraries:",excluded_libraries,"\n",sep=""),file="target-seq
 
 #C. Voegele - modification to be independant from sample nomenclature
 #excluded_samples = unlist(lapply(excluded_libraries, function(x) unlist(strsplit(x,"-"))[2]))
-excluded_samples = unlist(lapply(excluded_libraries, function(x) data_annotated[which(data_annotated$old_SM == x),"SM"][1]))
+excluded_samples = unique(unlist(lapply(excluded_libraries, function(x) data_annotated[which(data_annotated$old_SM == x),"SM"][1])))
 cat(paste("Number of excluded samples:",length(excluded_samples),"\n",sep=""),file="target-seq_analysis.log",append = T)
 data_annotated = data_annotated[which(!data_annotated$SM %in% excluded_samples),]
 cat(paste("Number of variants after exclusion of samples:",nrow(data_annotated),"\n",sep=""),file="target-seq_analysis.log",append = T)
