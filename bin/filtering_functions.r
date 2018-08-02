@@ -43,6 +43,6 @@ get_minRVSB <- function(data){
     ids = which(bc_data[i] == bc_data)
     ids[which(ids!=i)]
   }))
-  data[lib1,"minRVSB"] = data[lib2,"minRVSB"] = pmin(data[lib1,"RVSB"], data[lib1,"RVSB"])
+  data[lib1,"minRVSB"] = data[lib2,"minRVSB"] = pmin(data[lib1,"RVSB"], data[lib2,"RVSB"])
   data$minRVSB
 }
