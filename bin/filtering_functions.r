@@ -1,9 +1,12 @@
 # function to compute, given a variant (dataframe + row number), the minimum distance to another one
-min_distance <-function(all_my_data, row_number_variant, max_af=0.1){
+min_distance <-function(all_my_data, row_number_variant, max_af=NA, ratio=NA){
+  if(!is.na(max_af) & !is.na(ratio)) stop("please provide either max_af or ratio option")
   cur_data = all_my_data[-row_number_variant,] #remove current variant from distances computations
+  if(!is.na(max_af)) ids = (cur_data$AF>=max_af)
+  if(!is.na(ratio)) ids = ( (cur_data$AF / all_my_data[row_number_variant,"AF"]) >= ratio)
   cur_data = cur_data[which(cur_data$Chr==all_my_data[row_number_variant,"Chr"] &
                               cur_data$old_SM==all_my_data[row_number_variant,"old_SM"] &
-                              cur_data$AF>=max_af) ,]
+                              ids) ,]
   indels = which(as.numeric(cur_data$End) > as.numeric(cur_data$Start))
   min( unlist(lapply(all_my_data[row_number_variant,"Start"]:all_my_data[row_number_variant,"End"], function(var_pos) {
     #create a vector of all position where we observed a variant
