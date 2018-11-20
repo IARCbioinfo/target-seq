@@ -95,7 +95,7 @@ cat(paste("Number of variants after filter on RVSB:",nrow(data_annotated),"\n",s
 data_annotated$MIN_DIST = unlist(lapply(1:nrow(data_annotated), function(i) min_distance(data_annotated, i) ))
 #filter
 data_annotated = data_annotated[which(data_annotated$MIN_DIST>5 | is.infinite(data_annotated$MIN_DIST)),]                                 
-#In case it's run separately use is.na instead of is.infinite:                                        
+#to filter as following, use is.infinite instead of is.na if the table has been loaded (not been computed in the same env)                                        
 #data_annotated = data_annotated[which(data_annotated$MIN_DIST>5 | is.na(data_annotated$MIN_DIST)),]
 cat(paste("Number of variants after removal of alignments errors (MIN_DIST):",nrow(data_annotated),"\n",sep=""),file="target-seq_analysis.log",append = T)
 
