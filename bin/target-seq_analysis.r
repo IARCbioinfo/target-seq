@@ -88,7 +88,7 @@ cat(paste("Number of variants after check of duplicates:",nrow(data_annotated),"
 
 # filtering on RVSB, keeping only if one of the two libraries has RVSB<0.85
 data_annotated$minRVSB = get_minRVSB(data_annotated)
-data_annotated = data_annotated[which(data_annotated$minRVSB<0.85 | (is.na(data_annotated$minRVSB) & data_annotated$RVSB<0.85),]         
+data_annotated = data_annotated[which(data_annotated$minRVSB<0.85 | (is.na(data_annotated$minRVSB) & data_annotated$RVSB<0.85)),]         
 cat(paste("Number of variants after filter on RVSB:",nrow(data_annotated),"\n",sep=""),file="target-seq_analysis.log",append = T)                                
                                                                   
 #count the minimum distance from another variant, to remove alignment errors
